@@ -68,6 +68,7 @@ Node<K,V>* SkipList<K,V>::searchElement(K key)
 {
     //从高层向底层遍历，每一层都可能搜到，若搜不到，则该元素不在跳表中
     Node<K,V> *p,*q;
+    p=q=nullptr;
     p=this->head;
     for(int i=this->curHeight;i>=0;i--)
     {
@@ -117,6 +118,7 @@ bool SkipList<K,V>::insertElement(K key,V value)
     mtx.lock();//信号量P操作
     Node<K,V>* backup[maxHeight];
     Node<K,V> *p,*q;
+    p=q=nullptr;
     int insertHeight;
     p=this->head;
     for(int i=this->curHeight-1;i>=0;i--)
@@ -159,6 +161,7 @@ bool SkipList<K,V>::deleteElement(K key)
     mtx.lock();
     Node<K,V>* backup[maxHeight];
     Node<K,V> *p,*q;
+    p=q=nullptr;
     p=this->head;
     for(int i=this->curHeight-1;i>=0;i--)
     {
